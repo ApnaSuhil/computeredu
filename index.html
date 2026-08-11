@@ -1,0 +1,2131 @@
+<!DOCTYPE html>
+<html lang="hi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APNA SUHIL - Free Computer Education Portal</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@600;700;800;900&family=Great+Vibes&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- QRCode.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- HTML2PDF.js Bundle -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            navy: '#0B1E3D',
+                            blue: '#00A8E8',
+                            lightBlue: '#E6F4F1',
+                            dark: '#050C1A',
+                            gold: '#D4AF37',
+                            goldDark: '#AA7C11'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                        certRoyal: ['Cinzel Decorative', 'serif'],
+                        certTitle: ['Cinzel', 'serif'],
+                        studentName: ['Alex Brush', 'cursive'],
+                        signature: ['Great Vibes', 'cursive']
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'fade-in-up': 'fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'bounce-subtle': 'bounceSubtle 2s infinite'
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-8px)' }
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: 1, filter: 'drop-shadow(0 0 8px rgba(0, 168, 232, 0.6))' },
+                            '50%': { opacity: 0.7, filter: 'drop-shadow(0 0 2px rgba(0, 168, 232, 0.2))' }
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: 0, transform: 'translateY(20px)' },
+                            '100%': { opacity: 1, transform: 'translateY(0)' }
+                        },
+                        bounceSubtle: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-6px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #00A8E8;
+            border-radius: 10px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .card-hover-effect {
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .card-hover-effect:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 20px 25px -5px rgba(11, 30, 61, 0.1), 0 10px 10px -5px rgba(11, 30, 61, 0.04);
+        }
+        .social-btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #9ca3af;
+            font-size: 1.25rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
+        }
+        .social-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+            color: #ffffff;
+            border-color: transparent;
+        }
+        .social-btn.youtube:hover { background: #ff0000; box-shadow: 0 8px 20px rgba(255, 0, 0, 0.4); }
+        .social-btn.instagram:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); box-shadow: 0 8px 20px rgba(220, 39, 67, 0.4); }
+        .social-btn.telegram:hover { background: #0088cc; box-shadow: 0 8px 20px rgba(0, 136, 204, 0.4); }
+        .social-btn.linkedin:hover { background: #0077b5; box-shadow: 0 8px 20px rgba(0, 119, 181, 0.4); }
+        .social-btn.facebook:hover { background: #1877f2; box-shadow: 0 8px 20px rgba(24, 119, 242, 0.4); }
+        .social-btn.x-twitter:hover { background: #111111; box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2); }
+        .social-btn.github:hover { background: #333333; box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2); }
+
+        .social-btn .tooltip {
+            position: absolute;
+            bottom: -35px;
+            opacity: 0;
+            visibility: hidden;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 6px;
+            background: #ffffff;
+            color: #0B1E3D;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .social-btn:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+            bottom: -30px;
+        }
+
+        #certViewportContainer {
+            overflow: hidden;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+            position: relative;
+            cursor: grab;
+        }
+
+        #printableCertificate {
+            width: 980px;
+            height: 690px;
+            box-sizing: border-box;
+            transform-origin: center center;
+            transition: transform 0.15s ease-out;
+            background: #ffffff;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        @media print {
+            @page {
+                size: A4 landscape;
+                margin: 0 !important;
+            }
+            html, body {
+                width: 297mm !important;
+                height: 210mm !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                background: #ffffff !important;
+                overflow: hidden !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            body * {
+                visibility: hidden !important;
+            }
+            #section-certificate, #certificateWrapper, #certViewportContainer, #printableCertificate, #printableCertificate * {
+                visibility: visible !important;
+            }
+            #section-certificate {
+                position: absolute !important;
+                left: 0 !important;
+                top: 0 !important;
+                width: 297mm !important;
+                height: 210mm !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                background: white !important;
+            }
+            #certificateWrapper, #certViewportContainer {
+                width: 297mm !important;
+                height: 210mm !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                box-sizing: border-box !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                overflow: hidden !important;
+            }
+            #printableCertificate {
+                width: 287mm !important;
+                height: 200mm !important;
+                max-width: none !important;
+                max-height: none !important;
+                margin: 0 auto !important;
+                padding: 12px !important;
+                box-shadow: none !important;
+                border-width: 10px !important;
+                box-sizing: border-box !important;
+                transform: scale(1) translate(0px, 0px) !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+            .no-print, #whatsappHelpWidget {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans flex flex-col min-h-screen antialiased selection:bg-brand-blue selection:text-white relative">
+
+    <!-- CLEAN HEADER / NAVBAR -->
+    <header class="bg-brand-navy/95 backdrop-blur-md text-white sticky top-0 z-50 shadow-xl border-b border-white/10 transition-all duration-300 no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo & Brand Name -->
+                <div class="flex items-center space-x-3 cursor-pointer group" onclick="showSection('home')">
+                    <div class="w-12 h-12 bg-white rounded-xl p-1.5 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-300">
+                        <svg viewBox="0 0 500 500" class="w-full h-full drop-shadow">
+                            <path d="M 50 350 Q 250 420 450 350 L 450 180 Q 250 250 50 180 Z" fill="none" stroke="#0B1E3D" stroke-width="24" stroke-linejoin="round"/>
+                            <path d="M 250 220 L 250 395" stroke="#0B1E3D" stroke-width="20" stroke-linecap="round"/>
+                            <rect x="130" y="290" width="35" height="50" rx="5" fill="#00A8E8"/>
+                            <rect x="190" y="240" width="35" height="110" rx="5" fill="#00A8E8"/>
+                            <rect x="275" y="190" width="35" height="170" fill="#0B1E3D"/>
+                            <rect x="335" y="150" width="35" height="220" rx="5" fill="#0B1E3D"/>
+                            <path d="M 40 330 C 100 150 200 280 390 90" fill="none" stroke="#00A8E8" stroke-width="28" stroke-linecap="round"/>
+                            <polygon points="370,60 430,75 400,125" fill="#00A8E8"/>
+                            <circle cx="420" cy="50" r="16" fill="#00A8E8"/>
+                            <path d="M 420 20 L 420 10 M 420 80 L 420 90 M 390 50 L 380 50 M 450 50 L 460 50 M 398 28 L 390 20 M 442 72 L 450 80 M 398 72 L 390 80 M 442 28 L 450 20" stroke="#00A8E8" stroke-width="8" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-extrabold tracking-wider text-white font-heading group-hover:text-brand-blue transition-colors">APNA SUHIL</h1>
+                        <p class="text-[11px] text-brand-blue tracking-widest font-semibold uppercase">Ignite Your Digital Career</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Clean Navigation -->
+                <nav class="hidden md:flex items-center space-x-7 text-sm font-semibold tracking-wide">
+                    <button onclick="showSection('home')" class="hover:text-brand-blue transition duration-200">Home</button>
+                    <button onclick="showSection('courses')" class="hover:text-brand-blue transition duration-200">All Courses</button>
+                    <button onclick="showSection('dashboard')" class="hover:text-brand-blue transition duration-200 text-teal-300 font-bold flex items-center gap-1.5">
+                        <i class="fa-solid fa-chart-line"></i> Dashboard
+                    </button>
+                    <button onclick="showSection('pdf-notes')" class="hover:text-brand-blue transition duration-200 text-amber-300 font-bold flex items-center gap-1.5">
+                        <i class="fa-solid fa-file-pdf text-red-400"></i> PDF Notes
+                    </button>
+                    <button onclick="showSection('live-classes')" class="hover:text-brand-blue transition duration-200 flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></span> Live Classes
+                    </button>
+                    <button onclick="showSection('certificate')" class="hover:text-brand-blue transition duration-200">Certificate</button>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white hover:text-brand-blue focus:outline-none p-2 rounded-lg bg-white/5 active:bg-white/10">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark/95 backdrop-blur-xl px-4 pt-3 pb-5 space-y-2 border-t border-white/10 transition-all duration-300 no-print">
+            <button onclick="showSection('home')" class="block w-full text-left py-2.5 px-4 hover:bg-white/5 rounded-xl text-sm font-medium">Home</button>
+            <button onclick="showSection('courses')" class="block w-full text-left py-2.5 px-4 hover:bg-white/5 rounded-xl text-sm font-medium">All Courses</button>
+            <button onclick="showSection('dashboard')" class="block w-full text-left py-2.5 px-4 hover:bg-white/5 text-teal-300 rounded-xl text-sm font-bold"><i class="fa-solid fa-chart-line mr-2"></i> Student Dashboard</button>
+            <button onclick="showSection('pdf-notes')" class="block w-full text-left py-2.5 px-4 hover:bg-white/5 text-amber-300 rounded-xl text-sm font-bold"><i class="fa-solid fa-file-pdf text-red-400 mr-2"></i> Class PDF Notes</button>
+            <button onclick="showSection('live-classes')" class="block w-full text-left py-2.5 px-4 hover:bg-white/5 rounded-xl text-sm font-medium">Live Classes</button>
+            <button onclick="showSection('certificate')" class="block w-full text-left py-2.5 px-4 hover:bg-white/5 rounded-xl text-sm font-medium">Get Certificate</button>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow">
+
+        <!-- SECTION: HOME -->
+        <section id="section-home" class="block animate-fade-in-up">
+            <div class="bg-gradient-to-br from-brand-navy via-brand-dark to-brand-navy text-white py-20 md:py-28 relative overflow-hidden">
+                <div class="absolute -top-32 -left-32 w-96 h-96 bg-brand-blue/20 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                        <div class="space-y-6">
+                            
+                            <div class="flex flex-wrap items-center gap-3">
+                                <span class="inline-flex items-center gap-2 bg-brand-blue/10 text-brand-blue text-xs font-bold px-4 py-2 rounded-full border border-brand-blue/30 shadow-inner">
+                                    <i class="fa-solid fa-graduation-cap"></i> Quality Education For Everyone
+                                </span>
+                                <span class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 text-xs px-3.5 py-1.5 rounded-full font-extrabold shadow-lg animate-pulse">
+                                    <i class="fa-solid fa-tag mr-1"></i> 100% Free Computer Portal
+                                </span>
+                            </div>
+
+                            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight font-heading">
+                                Master Computer Skills <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-teal-300">100% Free with Certificate</span>
+                            </h1>
+                            <p class="text-gray-300 text-base sm:text-lg leading-relaxed font-normal">
+                                Complete Chapter-wise pre-recorded courses, join live interactive classes, and download verifiable certificates upon completion.
+                            </p>
+                            
+                            <div class="flex flex-wrap gap-4 pt-2">
+                                <button onclick="showSection('enrollment')" class="bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-600 hover:from-teal-600 hover:to-emerald-500 text-white font-black px-8 py-4 rounded-xl shadow-2xl hover:shadow-emerald-500/40 hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-2.5">
+                                    <i class="fa-solid fa-file-pen text-lg"></i> Take Admission Now
+                                </button>
+
+                                <button onclick="showSection('courses')" class="bg-white/10 hover:bg-white/20 hover:scale-105 active:scale-95 text-white border border-white/20 font-bold px-7 py-4 rounded-xl transition duration-300 backdrop-blur-sm">
+                                    Explore Courses
+                                </button>
+                                
+                                <button onclick="showSection('pdf-notes')" class="bg-amber-500/20 hover:bg-amber-500/30 hover:scale-105 active:scale-95 text-amber-300 border border-amber-500/40 font-bold px-6 py-4 rounded-xl transition duration-300 backdrop-blur-sm flex items-center gap-2">
+                                    <i class="fa-solid fa-book-bookmark"></i> Read Notes
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-5">
+                            <div class="glass-card p-6 rounded-2xl text-center hover:scale-105 transition-transform duration-300 group">
+                                <div class="w-14 h-14 bg-brand-blue/20 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:bg-brand-blue transition-colors">
+                                    <i class="fa-solid fa-video text-brand-blue group-hover:text-white text-2xl transition-colors"></i>
+                                </div>
+                                <h3 class="font-bold text-lg font-heading">Live Classes</h3>
+                                <p class="text-xs text-gray-300 mt-1">Daily YouTube Streams</p>
+                            </div>
+                            <div class="glass-card p-6 rounded-2xl text-center hover:scale-105 transition-transform duration-300 group">
+                                <div class="w-14 h-14 bg-emerald-500/20 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:bg-emerald-500 transition-colors">
+                                    <i class="fa-solid fa-certificate text-emerald-400 group-hover:text-white text-2xl transition-colors"></i>
+                                </div>
+                                <h3 class="font-bold text-lg font-heading">Free Certificate</h3>
+                                <p class="text-xs text-gray-300 mt-1">Instant Verification</p>
+                            </div>
+                            <div class="glass-card p-6 rounded-2xl text-center hover:scale-105 transition-transform duration-300 group">
+                                <div class="w-14 h-14 bg-amber-500/20 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:bg-amber-500 transition-colors">
+                                    <i class="fa-solid fa-layer-group text-amber-400 group-hover:text-white text-2xl transition-colors"></i>
+                                </div>
+                                <h3 class="font-bold text-lg font-heading">Chapter Wise</h3>
+                                <p class="text-xs text-gray-300 mt-1">Structured Modules</p>
+                            </div>
+                            <div class="glass-card p-6 rounded-2xl text-center hover:scale-105 transition-transform duration-300 group">
+                                <div class="w-14 h-14 bg-purple-500/20 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:bg-purple-500 transition-colors">
+                                    <i class="fa-solid fa-file-pdf text-purple-400 group-hover:text-white text-2xl transition-colors"></i>
+                                </div>
+                                <h3 class="font-bold text-lg font-heading">PDF Notes</h3>
+                                <p class="text-xs text-gray-300 mt-1">Free Download & Read</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+                <div class="text-center max-w-2xl mx-auto mb-14">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy font-heading">Popular Computer Courses</h2>
+                    <p class="text-gray-600 mt-3 font-medium">Select a course to start learning chapter by chapter with full practical guidance.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7" id="popular-courses-grid"></div>
+
+                <div class="text-center mt-12">
+                    <button onclick="showSection('courses')" class="inline-flex items-center gap-3 bg-brand-navy hover:bg-brand-dark text-white font-bold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                        View All Courses <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STUDENT REVIEWS & GOOGLE MAPS SECTION -->
+            <section class="bg-gray-100 py-16 border-t border-gray-200">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-xl mx-auto mb-12">
+                        <span class="bg-brand-blue/10 text-brand-blue text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-wider">Trusted By Students</span>
+                        <h2 class="text-3xl font-extrabold text-brand-navy mt-3 font-heading">Student Reviews & Feedback</h2>
+                        <p class="text-gray-600 text-sm mt-1">Aapke apne review hamare liye mahatvapurna hain. Google Maps par apna anubhav share karein!</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+                        <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 flex flex-col justify-between">
+                            <div>
+                                <div class="flex text-amber-400 text-sm mb-3">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="text-gray-700 text-xs leading-relaxed italic">"APNA SUHIL portal se DCA aur Excel seekhna behad aasan raha. Free notes aur certificate ne meri job me bahut help ki!"</p>
+                            </div>
+                            <div class="mt-6 pt-4 border-t border-gray-100 flex items-center gap-3">
+                                <div class="w-9 h-9 bg-brand-navy text-white rounded-full flex items-center justify-center font-bold text-xs">R</div>
+                                <div>
+                                    <h4 class="font-bold text-xs text-gray-900">Rahul Vishwakarma</h4>
+                                    <span class="text-[10px] text-gray-400">DCA Student</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 flex flex-col justify-between">
+                            <div>
+                                <div class="flex text-amber-400 text-sm mb-3">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <p class="text-gray-700 text-xs leading-relaxed italic">"Tally Prime aur GST accounting ka course bilkul free me aur itna detail me milna kamaal hai. Thank you Suhil sir!"</p>
+                            </div>
+                            <div class="mt-6 pt-4 border-t border-gray-100 flex items-center gap-3">
+                                <div class="w-9 h-9 bg-emerald-600 text-white rounded-full flex items-center justify-center font-bold text-xs">P</div>
+                                <div>
+                                    <h4 class="font-bold text-xs text-gray-900">Pooja Singh</h4>
+                                    <span class="text-[10px] text-gray-400">Tally Student</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 flex flex-col justify-between">
+                            <div>
+                                <div class="flex text-amber-400 text-sm mb-3">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                                </div>
+                                <p class="text-gray-700 text-xs leading-relaxed italic">"Live classes aur instant certificate verification feature bohot hi shandar hai. Highly recommended for every computer student."</p>
+                            </div>
+                            <div class="mt-6 pt-4 border-t border-gray-100 flex items-center gap-3">
+                                <div class="w-9 h-9 bg-brand-blue text-white rounded-full flex items-center justify-center font-bold text-xs">A</div>
+                                <div>
+                                    <h4 class="font-bold text-xs text-gray-900">Amit Kumar</h4>
+                                    <span class="text-[10px] text-gray-400">PGDCA Student</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add Review on Google Maps Banner / Button Box -->
+                    <div class="bg-gradient-to-r from-brand-navy to-brand-dark p-8 rounded-2xl shadow-xl text-center text-white flex flex-col sm:flex-row items-center justify-between gap-6">
+                        <div class="text-left">
+                            <h3 class="text-xl font-extrabold font-heading">Apna Valuable Review Google Maps par Share Karein</h3>
+                            <p class="text-xs text-gray-300 mt-1">Aapke review se humein aur behtar free education provide karne me madad milti hai.</p>
+                        </div>
+                        <a href="https://maps.google.com" target="_blank" class="bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold text-xs px-6 py-3.5 rounded-xl shadow-lg transition duration-300 flex items-center gap-2 whitespace-nowrap">
+                            <i class="fa-solid fa-map-location-dot text-sm"></i> Add Your Review on Google Maps
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- SECTION: ALL COURSES -->
+        <section id="section-courses" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 animate-fade-in-up">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10 border-b pb-6 border-gray-200">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-brand-navy font-heading">All Computer Courses</h2>
+                    <p class="text-gray-600 text-sm mt-1">Comprehensive chapter-wise courses with certification</p>
+                </div>
+                <div class="w-full md:w-80 relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-gray-400"></i>
+                    <input type="text" id="searchCourse" onkeyup="filterCourses()" placeholder="Search course (e.g. Tally, DCA)..." 
+                           class="w-full pl-11 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-brand-blue outline-none text-sm shadow-sm">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7" id="all-courses-grid"></div>
+        </section>
+
+        <!-- SECTION: STUDENT DASHBOARD -->
+        <section id="section-dashboard" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 animate-fade-in-up">
+            <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-100 mb-8">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-6 border-b border-gray-100">
+                    <div class="flex items-center gap-4">
+                        <div class="w-16 h-16 bg-brand-navy text-white font-extrabold text-2xl rounded-2xl flex items-center justify-center shadow">
+                            <i class="fa-solid fa-user-graduate"></i>
+                        </div>
+                        <div>
+                            <h2 id="dashStudentName" class="text-2xl font-extrabold text-brand-navy">Student Dashboard</h2>
+                            <p id="dashStudentReg" class="text-xs text-gray-500 font-semibold">Registered Account Progress Overview</p>
+                        </div>
+                    </div>
+                    <button onclick="showSection('enrollment')" class="bg-gradient-to-r from-brand-blue to-blue-600 text-white font-bold text-xs px-5 py-3 rounded-xl shadow hover:scale-105 transition">
+                        <i class="fa-solid fa-plus-circle mr-1.5"></i> Enroll New Course
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                    <div class="bg-brand-lightBlue/60 p-5 rounded-xl border border-brand-blue/20">
+                        <p class="text-xs font-bold text-brand-blue uppercase">Enrolled Courses</p>
+                        <h3 id="dashEnrolledCount" class="text-3xl font-black text-brand-navy mt-1">0</h3>
+                    </div>
+                    <div class="bg-emerald-50 p-5 rounded-xl border border-emerald-200">
+                        <p class="text-xs font-bold text-emerald-800 uppercase">Completed Lectures</p>
+                        <h3 id="dashLecturesCount" class="text-3xl font-black text-emerald-700 mt-1">0</h3>
+                    </div>
+                    <div class="bg-amber-50 p-5 rounded-xl border border-amber-200">
+                        <p class="text-xs font-bold text-amber-800 uppercase">Certificates Issued</p>
+                        <h3 id="dashCertCount" class="text-3xl font-black text-amber-700 mt-1">0</h3>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-bold text-brand-navy mb-4 font-heading"><i class="fa-solid fa-book-open mr-2 text-brand-blue"></i> My Learning Progress</h3>
+            <div id="dashCourseList" class="space-y-4"></div>
+        </section>
+
+        <!-- SECTION: ONLINE EXAMINATION & QUIZ PORTAL -->
+        <section id="section-quiz" class="hidden max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 animate-fade-in-up">
+            <div class="bg-white p-8 rounded-2xl shadow-2xl border border-gray-100">
+                <div class="flex items-center justify-between pb-6 border-b border-gray-200">
+                    <div>
+                        <span class="bg-red-100 text-red-700 text-xs font-bold px-3 py-1 rounded-full uppercase">Official Evaluation</span>
+                        <h2 id="quizCourseTitle" class="text-2xl font-extrabold text-brand-navy mt-1 font-heading">Course Final MCQ Examination</h2>
+                        <p class="text-xs text-gray-500 font-medium">Pass Score Required: 60% (6/10 Questions)</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-xs font-bold text-gray-500 block">Time Left</span>
+                        <span id="quizTimer" class="text-xl font-black text-red-600 font-mono">05:00</span>
+                    </div>
+                </div>
+
+                <div id="quizBox" class="mt-6 space-y-6">
+                    <div id="quizQuestionsContainer" class="space-y-6"></div>
+                    <button onclick="submitQuiz()" class="w-full bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-extrabold py-4 rounded-xl shadow-lg hover:scale-[1.01] transition">
+                        Submit Final Examination Answers
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: PDF NOTES & FOLDERS (WITH DELETE FUNCTION) -->
+        <section id="section-pdf-notes" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 animate-fade-in-up">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10 border-b pb-6 border-gray-200">
+                <div>
+                    <span class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-full uppercase">Class Study Material</span>
+                    <h2 class="text-3xl font-extrabold text-brand-navy mt-2 font-heading"><i class="fa-solid fa-folder-open text-amber-500 mr-2"></i> Course PDF Notes Library</h2>
+                    <p class="text-gray-600 text-sm mt-1">Select a course folder to read, download, or delete chapter-wise PDF study notes</p>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <button onclick="openPdfCreatorModal()" class="bg-brand-navy hover:bg-brand-dark text-white text-xs font-bold px-4 py-2.5 rounded-lg transition shadow flex items-center gap-1.5">
+                        <i class="fa-solid fa-plus-circle text-amber-400"></i> Add Note Detail
+                    </button>
+                    <label class="bg-gradient-to-r from-brand-blue to-blue-600 hover:from-blue-600 hover:to-brand-blue text-white text-xs font-bold px-4 py-2.5 rounded-lg cursor-pointer transition shadow flex items-center gap-1.5">
+                        <i class="fa-solid fa-cloud-arrow-up"></i> Device Upload
+                        <input type="file" id="pdfFileInput" accept="application/pdf" class="hidden" onchange="handlePDFUpload(event)">
+                    </label>
+                </div>
+            </div>
+
+            <div id="pdfFoldersGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+
+            <div id="pdfNotesListContainer" class="hidden">
+                <div class="flex items-center justify-between mb-6 bg-white p-4 rounded-xl shadow-md border border-gray-100">
+                    <button onclick="closeFolderView()" class="text-sm font-bold text-brand-navy hover:text-brand-blue transition flex items-center gap-2">
+                        <i class="fa-solid fa-arrow-left"></i> Back to All Folders
+                    </button>
+                    <h3 id="currentFolderName" class="text-xl font-bold text-brand-navy font-heading flex items-center gap-2">
+                        <i class="fa-solid fa-folder-open text-amber-500"></i> Course Folder
+                    </h3>
+                    <span id="currentFolderCount" class="text-xs font-bold bg-amber-100 text-amber-800 px-3 py-1 rounded-full">0 PDF Files</span>
+                </div>
+
+                <div id="pdfFilesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            </div>
+        </section>
+
+        <!-- DYNAMIC PDF CREATOR FORM MODAL -->
+        <div id="pdfCreatorModal" class="fixed inset-0 bg-black/70 z-[100] hidden flex items-center justify-center p-4 backdrop-blur-sm">
+            <div class="bg-white max-w-md w-full rounded-2xl p-6 shadow-2xl space-y-4">
+                <div class="flex items-center justify-between border-b pb-3">
+                    <h3 class="font-bold text-brand-navy text-lg"><i class="fa-solid fa-file-circle-plus text-brand-blue mr-2"></i> Add New PDF Note Detail</h3>
+                    <button onclick="closePdfCreatorModal()" class="text-gray-400 hover:text-gray-700"><i class="fa-solid fa-xmark text-lg"></i></button>
+                </div>
+                <form onsubmit="submitCustomPdfNote(event)" class="space-y-4 text-xs">
+                    <div>
+                        <label class="block font-bold text-gray-700 mb-1">Select Course Folder *</label>
+                        <select id="newPdfFolder" required class="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-brand-blue">
+                            <option value="dca">DCA (Diploma in Computer Applications)</option>
+                            <option value="pgdca">PGDCA (Post Graduate Diploma)</option>
+                            <option value="excel">Advance Excel & Data Analytics</option>
+                            <option value="tally-prime">Tally Prime & GST Accounting</option>
+                            <option value="ccc">CCC (Course on Computer Concepts)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-gray-700 mb-1">PDF Note Title *</label>
+                        <input type="text" id="newPdfTitle" required placeholder="e.g. DCA Chapter 3 Full Notes" class="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-brand-blue">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-gray-700 mb-1">PDF Direct Web/Drive URL *</label>
+                        <input type="url" id="newPdfUrl" required placeholder="https://example.com/notes.pdf" class="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-brand-blue">
+                    </div>
+                    <button type="submit" class="w-full bg-brand-navy hover:bg-brand-dark text-white font-bold py-3 rounded-xl transition">
+                        Add Note to Selected Folder
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- PDF ONLINE READER MODAL WINDOW -->
+        <div id="pdfViewerModal" class="fixed inset-0 bg-black/80 z-[100] hidden flex flex-col justify-between p-4 backdrop-blur-sm">
+            <div class="flex items-center justify-between bg-brand-navy text-white px-6 py-3.5 rounded-t-xl">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-file-pdf text-red-400 text-2xl"></i>
+                    <div>
+                        <h4 id="pdfModalTitle" class="font-bold text-sm sm:text-base">Document Title</h4>
+                        <p class="text-[11px] text-gray-300">APNA SUHIL E-Learning Online PDF Reader</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <a id="pdfModalDownloadLink" href="#" download class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-4 py-2 rounded-lg transition flex items-center gap-1.5 shadow">
+                        <i class="fa-solid fa-download"></i> Download Device
+                    </a>
+                    <button onclick="closePdfModal()" class="text-gray-300 hover:text-white text-2xl px-2">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="flex-grow bg-gray-900 rounded-b-xl overflow-hidden relative">
+                <iframe id="pdfViewerIframe" class="w-full h-full border-none" src="" title="PDF Reader"></iframe>
+            </div>
+        </div>
+
+        <!-- SECTION: COURSE PLAYER / DETAILS -->
+        <section id="section-course-player" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 animate-fade-in-up">
+            <button onclick="showSection('courses')" class="mb-6 inline-flex items-center text-sm font-bold text-brand-navy hover:text-brand-blue transition-colors group">
+                <i class="fa-solid fa-arrow-left mr-2 group-hover:-translate-x-1 transition-transform"></i> Back to Courses
+            </button>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 bg-white p-5 rounded-2xl shadow-xl border border-gray-100">
+                    <div class="aspect-video w-full rounded-xl overflow-hidden bg-black mb-5 shadow-inner">
+                        <iframe id="videoPlayer" class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" title="Course Player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <h3 id="currentLessonTitle" class="text-2xl font-bold text-brand-navy font-heading">Lesson 1: Introduction to Computer Basics</h3>
+                    <p id="currentCourseTitle" class="text-sm text-brand-blue font-semibold mt-1">DCA - Diploma in Computer Applications</p>
+                    
+                    <hr class="my-5 border-gray-200">
+
+                    <div class="flex flex-wrap items-center justify-between gap-4">
+                        <button onclick="markCurrentLessonComplete()" class="bg-brand-navy hover:bg-brand-dark text-white px-5 py-2.5 rounded-xl font-bold text-xs transition">
+                            <i class="fa-solid fa-circle-check text-emerald-400 mr-2"></i> Mark Lesson Completed
+                        </button>
+                        <button onclick="startCourseExam()" class="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-teal-600 hover:to-emerald-600 text-white px-6 py-2.5 rounded-xl font-bold text-sm shadow-md transition duration-300 hover:scale-105">
+                            <i class="fa-solid fa-graduation-cap mr-2"></i> Take Exam & Claim Certificate
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl shadow-xl border border-gray-100 h-[520px] flex flex-col">
+                    <h4 class="font-bold text-brand-navy text-lg mb-4 pb-3 border-b border-gray-200 flex items-center justify-between font-heading">
+                        <span>Course Chapters</span>
+                        <span id="lessonCount" class="text-xs font-semibold bg-brand-lightBlue text-brand-blue px-3 py-1 rounded-full">0 Lectures</span>
+                    </h4>
+                    
+                    <div id="chapterList" class="flex-grow overflow-y-auto space-y-2.5 custom-scrollbar pr-1"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: LIVE CLASSES (UPDATED WITH MULTI-PLATFORM LIVE STREAMING / CALLING OPTION) -->
+        <section id="section-live-classes" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 animate-fade-in-up">
+            <div class="text-center max-w-xl mx-auto mb-10">
+                <span class="bg-red-100 text-red-600 text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-wider">Interactive Learning</span>
+                <h2 class="text-3xl font-extrabold text-brand-navy mt-3 font-heading">Daily Live YouTube & Video Classes</h2>
+                <p class="text-gray-600 text-sm mt-1">Join scheduled live streams, clear doubts in real-time, or start a live video call session.</p>
+            </div>
+
+            <!-- GO LIVE ADMIN TRIGGER BAR -->
+            <div class="bg-gradient-to-r from-brand-navy to-brand-dark p-6 rounded-2xl shadow-xl mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-white">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 bg-red-600 text-white rounded-xl flex items-center justify-center text-2xl shadow animate-pulse">
+                        <i class="fa-solid fa-video"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-extrabold text-base font-heading">Instructor / Host Broadcast Panel</h4>
+                        <p class="text-xs text-gray-300">YouTube Live, Zoom, ya Google Meet par live aane ke liye link set karein</p>
+                    </div>
+                </div>
+                <button onclick="openGoLiveModal()" class="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-black text-xs px-6 py-3.5 rounded-xl shadow-lg transition duration-300 flex items-center gap-2 whitespace-nowrap">
+                    <i class="fa-solid fa-podcast text-sm"></i> Go Live Now (Setup Stream)
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 bg-white p-5 rounded-2xl shadow-xl border border-gray-100">
+                    <div class="aspect-video w-full rounded-xl overflow-hidden bg-black mb-4 relative shadow-md">
+                        <iframe id="liveClassIframe" class="w-full h-full" src="https://www.youtube.com/embed/live_stream?channel=YOUR_CHANNEL_ID" title="Live Stream" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <div class="absolute top-4 left-4 bg-red-600 text-white text-xs font-bold px-3.5 py-1.5 rounded-full flex items-center gap-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-white animate-ping"></span> <span id="liveBadgeText">LIVE NOW</span>
+                        </div>
+                    </div>
+                    <h3 id="activeLiveTitle" class="text-xl font-bold text-brand-navy font-heading">Advance Excel & Data Analysis - Live Q&A Session</h3>
+                    <p class="text-xs text-gray-500 font-medium mt-1">Streamed live by APNA SUHIL Educational Team</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-xl border border-gray-100">
+                    <h3 class="text-lg font-bold text-brand-navy mb-5 pb-3 border-b border-gray-200 flex items-center font-heading"><i class="fa-solid fa-calendar-days text-brand-blue mr-2.5"></i> Upcoming Live Classes</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="p-4 bg-gray-50 rounded-xl border border-gray-100">
+                            <p class="text-xs font-extrabold text-brand-blue">TODAY - 07:00 PM</p>
+                            <h4 class="font-bold text-sm text-gray-800 mt-1">Tally Prime GST Invoice Creation</h4>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-xl border border-gray-100">
+                            <p class="text-xs font-extrabold text-brand-blue">TOMORROW - 08:00 PM</p>
+                            <h4 class="font-bold text-sm text-gray-800 mt-1">CPCT Exam Preparation Special</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GO LIVE SETUP MODAL -->
+        <div id="goLiveModal" class="fixed inset-0 bg-black/70 z-[100] hidden flex items-center justify-center p-4 backdrop-blur-sm">
+            <div class="bg-white max-w-lg w-full rounded-2xl p-6 shadow-2xl space-y-5">
+                <div class="flex items-center justify-between border-b pb-3">
+                    <h3 class="font-extrabold text-brand-navy text-lg flex items-center gap-2">
+                        <i class="fa-solid fa-video text-red-600"></i> Start Live Video / Stream Session
+                    </h3>
+                    <button onclick="closeGoLiveModal()" class="text-gray-400 hover:text-gray-700 text-xl"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+
+                <form onsubmit="setupLiveBroadcast(event)" class="space-y-4 text-xs">
+                    <div>
+                        <label class="block font-bold text-gray-700 mb-1">Select Platform *</label>
+                        <select id="livePlatform" onchange="togglePlatformInput()" required class="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-brand-blue bg-white">
+                            <option value="youtube">YouTube Live Stream</option>
+                            <option value="zoom">Zoom Video Meeting</option>
+                            <option value="meet">Google Meet Video Call</option>
+                            <option value="custom">Custom Web Embed / Video URL</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block font-bold text-gray-700 mb-1">Live Session Title *</label>
+                        <input type="text" id="liveTitleInput" required placeholder="e.g. Tally Prime Live Doubt Clearing" class="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-brand-blue">
+                    </div>
+
+                    <div id="liveUrlDiv">
+                        <label id="liveUrlLabel" class="block font-bold text-gray-700 mb-1">YouTube Embed URL or Video ID *</label>
+                        <input type="text" id="liveUrlInput" required placeholder="e.g. dQw4w9WgXcQ or full embed link" class="w-full p-3 border rounded-xl outline-none focus:ring-2 focus:ring-brand-blue">
+                        <p id="liveUrlHelp" class="text-[10px] text-gray-400 mt-1">YouTube video ID ya Zoom/Meet link yahan paste karein.</p>
+                    </div>
+
+                    <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 text-amber-900 text-[11px] leading-relaxed">
+                        ℹ️ **Note:** Zoom ya Google Meet select karne par students ko direct meeting join karne ka option mil jayega, aur YouTube select karne par live stream player me chalegi.
+                    </div>
+
+                    <button type="submit" class="w-full bg-gradient-to-r from-red-600 to-brand-navy text-white font-extrabold py-3.5 rounded-xl shadow-lg transition">
+                        Start Broadcast Now
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- SECTION: ADMISSION / ENROLLMENT FORM -->
+        <section id="section-enrollment" class="hidden max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 animate-fade-in-up">
+            <div class="bg-white p-8 sm:p-10 rounded-2xl shadow-2xl border border-gray-100">
+                <div class="text-center max-w-lg mx-auto mb-10">
+                    <h2 class="text-3xl font-extrabold text-brand-navy font-heading">Student Online Admission Form</h2>
+                    <p class="text-gray-600 text-sm mt-2">Fill out the details below to enroll in any course for free</p>
+                </div>
+
+                <form id="admissionForm" onsubmit="handleAdmission(event)" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Full Name *</label>
+                            <input type="text" id="stdName" required placeholder="Enter student name" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-blue outline-none text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Father's / Guardian's Name *</label>
+                            <input type="text" id="stdFather" required placeholder="Enter father's name" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-blue outline-none text-sm">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Mobile Number *</label>
+                            <input type="tel" id="stdMobile" required placeholder="+91 7270927003" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-blue outline-none text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Email Address *</label>
+                            <input type="email" id="stdEmail" required placeholder="student@example.com" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-blue outline-none text-sm">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Select Course *</label>
+                        <select id="stdCourse" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-blue outline-none text-sm bg-white">
+                            <option value="">-- Choose a Course --</option>
+                            <option value="DCA (Diploma in Computer Applications)">DCA (Diploma in Computer Applications)</option>
+                            <option value="PGDCA (Post Graduate Diploma)">PGDCA (Post Graduate Diploma in Computer Applications)</option>
+                            <option value="Advance Excel & Data Analytics">Advance Excel & Data Analytics</option>
+                            <option value="Tally ERP 9 & Tally Prime GST">Tally ERP 9 & Tally Prime GST</option>
+                            <option value="CCC (Course on Computer Concepts)">CCC (Course on Computer Concepts)</option>
+                            <option value="CPCT Exam Preparation">CPCT (Computer Proficiency Certification Test)</option>
+                            <option value="CFA (Certificate in Financial Accounting)">CFA (Certificate in Financial Accounting)</option>
+                            <option value="Hindi Typing Mastery">Hindi Typing (KrutiDev / Mangal Remix)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Full Address</label>
+                        <textarea id="stdAddress" rows="3" placeholder="Enter full postal address" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-blue outline-none text-sm"></textarea>
+                    </div>
+
+                    <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-200 flex items-center justify-between">
+                        <span class="text-sm font-bold text-emerald-800"><i class="fa-solid fa-tag mr-2"></i> Course Fee:</span>
+                        <span class="text-xl font-extrabold text-emerald-700">₹0 / FREE</span>
+                    </div>
+
+                    <button type="submit" class="w-full bg-gradient-to-r from-brand-navy to-brand-dark hover:from-brand-dark hover:to-brand-navy text-white font-bold py-4 rounded-xl shadow-xl transition duration-300">
+                        Submit Admission & Start Learning
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- SECTION: CERTIFICATE GENERATION & VERIFICATION -->
+        <section id="section-certificate" class="hidden max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 animate-fade-in-up">
+            <div class="bg-white p-6 sm:p-10 rounded-2xl shadow-2xl border border-gray-100">
+                <div class="text-center max-w-lg mx-auto mb-8 no-print">
+                    <i class="fa-solid fa-award text-amber-500 text-6xl mb-3 animate-bounce"></i>
+                    <h2 class="text-3xl font-extrabold text-brand-navy font-heading">Course Completion Certificate</h2>
+                    <p class="text-gray-600 text-sm mt-2">Enter your Registered Email Address or Mobile Number to verify course completion and generate certificate</p>
+                </div>
+
+                <!-- Verification Search Form -->
+                <div class="space-y-5 max-w-md mx-auto mb-10 no-print">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Registered Email or Mobile Number *</label>
+                        <input type="text" id="certSearchKey" placeholder="e.g. student@gmail.com or 7270927003" class="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm focus:ring-2 focus:ring-brand-blue outline-none">
+                    </div>
+                    <button onclick="verifyAndGenerateCertificate()" class="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-teal-600 hover:to-emerald-600 text-white font-bold py-3.5 rounded-xl shadow-lg transition duration-300">
+                        Verify Enrollment & Show Certificate
+                    </button>
+                </div>
+
+                <!-- PUBLIC GREEN-TICK VERIFICATION CARD -->
+                <div id="publicVerificationBadge" class="hidden mb-6 bg-emerald-50 border-2 border-emerald-500 rounded-2xl p-6 text-center shadow-lg animate-fade-in-up">
+                    <div class="w-16 h-16 bg-emerald-500 text-white rounded-full flex items-center justify-center text-3xl mx-auto mb-3 shadow-md">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <span class="bg-emerald-600 text-white text-[10px] font-black tracking-widest uppercase px-3 py-1 rounded-full">OFFICIALLY VERIFIED STUDENT E-CERTIFICATE</span>
+                    <h3 id="verifyName" class="text-2xl font-black text-brand-navy mt-2 font-heading">STUDENT NAME</h3>
+                    <p id="verifyCourse" class="text-sm font-bold text-brand-blue mt-0.5">COURSE NAME</p>
+                    <p id="verifyReg" class="text-xs text-gray-500 font-mono mt-1">Registration ID: AS/2026/8849</p>
+                </div>
+
+                <!-- Live Royal Certificate Container -->
+                <div id="certificateWrapper" class="hidden">
+                    
+                    <!-- ONLINE LIVE HOVER PAN & ZOOM CONTROLS -->
+                    <div class="flex flex-wrap items-center justify-between bg-gray-100 p-3.5 rounded-xl mb-4 border border-gray-200 no-print gap-3">
+                        <div class="text-xs font-extrabold text-gray-700 flex items-center gap-2">
+                            <i class="fa-solid fa-arrows-up-down-left-right text-brand-blue text-sm"></i>
+                            <span>Hover Certificate to Auto-Zoom & Move (Up/Down/Left/Right)</span>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-2">
+                            <button id="hoverPanToggleBtn" onclick="toggleHoverPan()" class="bg-emerald-100 hover:bg-emerald-200 text-emerald-900 border border-emerald-300 px-3.5 py-1.5 rounded-lg text-xs font-bold shadow-sm transition flex items-center gap-1.5 active:scale-95">
+                                <i class="fa-solid fa-hand-pointer text-emerald-700"></i> Hover Move: <span id="hoverPanStatus" class="font-black text-emerald-800">ON</span>
+                            </button>
+
+                            <button onclick="zoomCertificate(0.1)" class="bg-white hover:bg-gray-200 text-brand-navy border border-gray-300 px-3.5 py-1.5 rounded-lg text-xs font-bold shadow-sm transition flex items-center gap-1.5 active:scale-95">
+                                <i class="fa-solid fa-plus text-emerald-600"></i> Zoom In
+                            </button>
+                            <button onclick="zoomCertificate(-0.1)" class="bg-white hover:bg-gray-200 text-brand-navy border border-gray-300 px-3.5 py-1.5 rounded-lg text-xs font-bold shadow-sm transition flex items-center gap-1.5 active:scale-95">
+                                <i class="fa-solid fa-minus text-red-600"></i> Zoom Out
+                            </button>
+                            <button onclick="resetZoom()" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-3.5 py-1.5 rounded-lg text-xs font-bold shadow-sm transition flex items-center gap-1.5 active:scale-95">
+                                <i class="fa-solid fa-rotate-left"></i> Reset
+                            </button>
+                            <span id="zoomVal" class="text-xs font-black text-brand-blue ml-2 bg-white px-3 py-1.5 rounded border border-gray-300 shadow-inner">100%</span>
+                        </div>
+                    </div>
+
+                    <!-- CERTIFICATE VIEWPORT CANVAS CONTAINER -->
+                    <div id="certViewportContainer">
+                        <div id="printableCertificate" class="bg-white border-[12px] border-brand-navy p-4 rounded-lg shadow-2xl relative overflow-hidden box-border flex flex-col justify-between">
+                            
+                            <!-- Inner Gold Border Frame -->
+                            <div class="border-4 border-brand-gold p-5 text-center relative bg-gradient-to-b from-amber-50/40 via-white to-amber-50/40 flex flex-col justify-between box-border h-full">
+                                
+                                <!-- Corner Ornamental Accents -->
+                                <div class="absolute top-2 left-2 text-brand-gold text-xl font-bold select-none">❖</div>
+                                <div class="absolute top-2 right-2 text-brand-gold text-xl font-bold select-none">❖</div>
+                                <div class="absolute bottom-2 left-2 text-brand-gold text-xl font-bold select-none">❖</div>
+                                <div class="absolute bottom-2 right-2 text-brand-gold text-xl font-bold select-none">❖</div>
+
+                                <!-- Watermark Vector Logo -->
+                                <div class="absolute inset-0 flex items-center justify-center opacity-[0.04] pointer-events-none">
+                                    <svg viewBox="0 0 500 500" class="w-96 h-96">
+                                        <path d="M 50 350 Q 250 420 450 350 L 450 180 Q 250 250 50 180 Z" fill="none" stroke="#0B1E3D" stroke-width="24"/>
+                                        <rect x="130" y="290" width="35" height="50" fill="#00A8E8"/>
+                                        <rect x="190" y="240" width="35" height="110" fill="#00A8E8"/>
+                                        <rect x="275" y="190" width="35" height="170" fill="#0B1E3D"/>
+                                        <rect x="335" y="150" width="35" height="220" fill="#0B1E3D"/>
+                                        <path d="M 40 330 C 100 150 200 280 390 90" fill="none" stroke="#00A8E8" stroke-width="28"/>
+                                    </svg>
+                                </div>
+
+                                <!-- Header Certificate Metadata -->
+                                <div class="flex justify-between items-center text-xs font-black text-brand-navy tracking-widest border-b-2 border-brand-gold/60 pb-2">
+                                    <span class="bg-brand-navy text-white px-3 py-1 rounded font-mono text-xs">REG: AS/2026/<span id="certRegId">8849</span></span>
+                                    <span class="uppercase tracking-[0.25em] text-brand-goldDark font-black text-sm">VERIFIED E-CERTIFICATE</span>
+                                    <span class="bg-brand-navy text-white px-3 py-1 rounded font-mono text-xs">DATE: <span id="certDate">09/08/2026</span></span>
+                                </div>
+
+                                <!-- Certificate Main Title -->
+                                <div class="my-2">
+                                    <h3 class="text-3xl sm:text-4xl font-black text-brand-navy font-certRoyal tracking-wider uppercase leading-tight drop-shadow">APNA SUHIL COMPUTER EDUCATION</h3>
+                                    <div class="flex items-center justify-center gap-3 mt-1.5">
+                                        <div class="w-16 h-0.5 bg-brand-gold"></div>
+                                        <p class="text-xs text-brand-blue font-extrabold uppercase tracking-[0.3em]">Ignite Your Digital Career</p>
+                                        <div class="w-16 h-0.5 bg-brand-gold"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Sub Heading & Body Content -->
+                                <div class="my-1 space-y-1">
+                                    <p class="text-xs font-black text-gray-600 uppercase tracking-[0.25em]">CERTIFICATE OF COMPLETION</p>
+                                    <p class="text-xs italic font-semibold text-gray-500">This is proudly awarded to</p>
+                                    
+                                    <!-- Student Name -->
+                                    <div class="my-2">
+                                        <h4 id="outCertName" class="text-4xl sm:text-5xl text-brand-navy font-studentName font-bold drop-shadow-md inline-block px-8 py-1">STUDENT NAME</h4>
+                                        <div class="w-72 sm:w-80 border-b-2 border-dashed border-brand-gold mx-auto -mt-2"></div>
+                                    </div>
+                                    
+                                    <p class="text-xs font-medium text-gray-700 leading-normal">has successfully enrolled and completed the full chapter-wise course curriculum on</p>
+                                    
+                                    <h5 id="outCertCourse" class="text-xl sm:text-2xl font-black text-brand-blue my-1.5 font-heading uppercase tracking-wide drop-shadow-sm">COURSE NAME</h5>
+                                    
+                                    <p class="text-xs font-medium text-gray-600 max-w-xl mx-auto leading-relaxed italic">Having demonstrated exceptional commitment, technical skills, and practical efficiency in all lectures and practical assignments.</p>
+                                </div>
+
+                                <!-- Additional Certificate Badges -->
+                                <div class="flex items-center justify-center gap-4 my-2 text-xs font-extrabold text-brand-navy">
+                                    <span class="bg-amber-100 border-2 border-amber-300 text-amber-950 px-3.5 py-1 rounded-full shadow-sm"><i class="fa-solid fa-award mr-1.5 text-amber-600"></i> Grade: A+ (EXCELLENT)</span>
+                                    <span class="bg-blue-100 border-2 border-blue-300 text-blue-950 px-3.5 py-1 rounded-full shadow-sm"><i class="fa-solid fa-check-double mr-1.5 text-brand-blue"></i> Status: COMPLETED</span>
+                                </div>
+
+                                <!-- Footer Section: QR Code & Signature -->
+                                <div class="flex justify-between items-end pt-2 border-t-2 border-brand-gold/60">
+                                    
+                                    <!-- Large QR Code Box -->
+                                    <div class="text-center">
+                                        <div id="qrcode" class="w-20 h-20 border-2 border-brand-navy p-1 bg-white rounded-lg shadow-md mx-auto flex items-center justify-center"></div>
+                                        <span class="text-[10px] text-gray-700 font-black uppercase tracking-widest mt-1 block">Scan to Verify</span>
+                                    </div>
+
+                                    <!-- Center Seal Graphic -->
+                                    <div class="text-center">
+                                        <div class="w-12 h-12 bg-amber-100 border-2 border-brand-gold rounded-full flex items-center justify-center mx-auto mb-1 text-brand-goldDark text-xl shadow-inner">
+                                            <i class="fa-solid fa-shield-halved"></i>
+                                        </div>
+                                        <span class="text-[10px] font-black text-brand-navy uppercase tracking-widest">OFFICIAL PORTAL CERTIFICATION</span>
+                                        <p class="text-[8px] text-gray-500 font-bold">Verifiable at apnasuhil.com</p>
+                                    </div>
+
+                                    <!-- Director Signature -->
+                                    <div class="text-center">
+                                        <p class="text-3xl font-bold text-brand-navy font-signature">Apna Suhil</p>
+                                        <div class="w-32 border-b-2 border-brand-navy my-1"></div>
+                                        <p class="text-[10px] font-black text-brand-navy uppercase tracking-wider">Authorized Director</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ACTION BUTTONS: DIRECT PRINT PREVIEW AND SAVE AS PDF -->
+                    <div class="flex flex-wrap justify-center gap-4 mt-6 no-print">
+                        <button id="certPrintBtn" onclick="triggerDirectPrint()" class="bg-gradient-to-r from-brand-navy to-brand-dark hover:from-brand-dark hover:to-brand-navy text-white px-8 py-3.5 rounded-xl text-sm font-extrabold shadow-xl hover:scale-105 transition duration-300 flex items-center gap-2.5">
+                            <i class="fa-solid fa-print text-lg text-brand-blue"></i>
+                            <span>Print Preview / Direct Print</span>
+                        </button>
+
+                        <button id="certSavePdfBtn" onclick="handleSavePDF()" class="bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 hover:from-teal-600 hover:to-emerald-600 text-white px-8 py-3.5 rounded-xl text-sm font-extrabold shadow-xl hover:scale-105 transition duration-300 flex items-center gap-2.5">
+                            <i class="fa-solid fa-file-pdf text-lg"></i>
+                            <span>Download PDF</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: WHATSAPP & CALL SUPPORT -->
+        <section id="section-support" class="hidden max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 animate-fade-in-up">
+            <div class="bg-white p-8 sm:p-10 rounded-2xl shadow-2xl border border-gray-100">
+                <div class="text-center max-w-lg mx-auto mb-10">
+                    <span class="bg-emerald-100 text-emerald-700 text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-wider">Instant Assistance</span>
+                    <h2 class="text-3xl font-extrabold text-brand-navy mt-3 font-heading"><i class="fa-brands fa-whatsapp text-emerald-500 mr-2"></i> WhatsApp & Call Support</h2>
+                    <p class="text-gray-600 text-sm mt-2">Apni student query aur kisi bhi doubt clear karne ke liye niche details bharein</p>
+                </div>
+
+                <form id="supportForm" onsubmit="handleSupportSubmit(event)" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Student Full Name *</label>
+                            <input type="text" id="suppName" required placeholder="Enter your full name" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-blue outline-none text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">City / Location *</label>
+                            <input type="text" id="suppCity" required placeholder="Enter your city name" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-blue outline-none text-sm">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Select Course *</label>
+                        <select id="suppCourse" onchange="toggleOtherCourseInput()" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-blue outline-none text-sm bg-white">
+                            <option value="">-- Choose Course --</option>
+                            <option value="DCA">DCA (Diploma in Computer Applications)</option>
+                            <option value="PGDCA">PGDCA (Post Graduate Diploma)</option>
+                            <option value="Advance Excel">Advance Excel & Data Analytics</option>
+                            <option value="Tally ERP 9 / Prime">Tally ERP 9 / Prime GST</option>
+                            <option value="CCC">CCC (Course on Computer Concepts)</option>
+                            <option value="CPCT">CPCT Exam Preparation</option>
+                            <option value="Hindi Typing">Hindi / English Typing</option>
+                            <option value="Other">Other Course (Specify Below)</option>
+                        </select>
+                    </div>
+
+                    <div id="otherCourseDiv" class="hidden">
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Specify Other Course *</label>
+                        <input type="text" id="suppOtherCourse" placeholder="Enter course name" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-blue outline-none text-sm">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Your Query / Doubt Details *</label>
+                        <textarea id="suppQuery" rows="4" required placeholder="Describe your doubt or question clearly..." class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-blue outline-none text-sm"></textarea>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                        <button type="submit" class="flex-1 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold py-4 rounded-xl shadow-lg hover:scale-[1.02] flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-2xl"></i> Chat on WhatsApp
+                        </button>
+                        <a href="tel:+917270927003" class="flex-1 bg-brand-navy hover:bg-brand-dark text-white font-bold py-4 rounded-xl shadow-lg flex items-center justify-center gap-2 text-center">
+                            <i class="fa-solid fa-phone text-lg"></i> Direct Call Support
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FLOATING ANIMATED WHATSAPP AI HELP DESK BUTTON & POPUP WIDGET -->
+    <div id="whatsappHelpWidget" class="fixed bottom-6 right-6 z-[90] flex flex-col items-end no-print">
+        <div id="aiHelpDeskModal" class="hidden mb-4 w-80 sm:w-96 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden transform transition-all duration-300 animate-fade-in-up">
+            <div class="bg-gradient-to-r from-emerald-600 via-teal-700 to-brand-navy text-white p-4 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="relative">
+                        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-emerald-600 font-bold text-xl shadow">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+                        <span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-400 border-2 border-white rounded-full"></span>
+                    </div>
+                    <div>
+                        <h4 class="font-extrabold text-sm tracking-wide">APNA SUHIL AI Help Desk</h4>
+                        <p class="text-[10px] text-emerald-200">Online 24/7 Smart Assistant</p>
+                    </div>
+                </div>
+                <button onclick="toggleHelpDeskModal()" class="text-white/80 hover:text-white text-lg p-1">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="p-4 space-y-3 bg-gray-50/60 max-h-96 overflow-y-auto custom-scrollbar">
+                <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-900 leading-relaxed font-medium">
+                    👋 Namaste! Main APNA SUHIL ka AI Support Assistant hoon. Main aapki kya madad kar sakta hoon?
+                </div>
+
+                <p class="text-[11px] font-extrabold text-gray-500 uppercase tracking-wider px-1">Select an Option:</p>
+
+                <button onclick="triggerAiOption('Admission Help')" class="w-full p-3 bg-white hover:bg-emerald-50 border border-gray-200 hover:border-emerald-300 rounded-xl text-left text-xs font-bold text-gray-800 transition flex items-center justify-between group">
+                    <span class="flex items-center gap-2.5"><i class="fa-solid fa-user-plus text-emerald-600 text-sm"></i> Online Admission Form Support</span>
+                    <i class="fa-solid fa-chevron-right text-gray-400 group-hover:translate-x-1 transition-transform"></i>
+                </button>
+
+                <button onclick="triggerAiOption('Certificate Verification')" class="w-full p-3 bg-white hover:bg-emerald-50 border border-gray-200 hover:border-emerald-300 rounded-xl text-left text-xs font-bold text-gray-800 transition flex items-center justify-between group">
+                    <span class="flex items-center gap-2.5"><i class="fa-solid fa-award text-amber-500 text-sm"></i> Certificate Issue & Verification</span>
+                    <i class="fa-solid fa-chevron-right text-gray-400 group-hover:translate-x-1 transition-transform"></i>
+                </button>
+
+                <button onclick="triggerAiOption('PDF Notes & Syllabus')" class="w-full p-3 bg-white hover:bg-emerald-50 border border-gray-200 hover:border-emerald-300 rounded-xl text-left text-xs font-bold text-gray-800 transition flex items-center justify-between group">
+                    <span class="flex items-center gap-2.5"><i class="fa-solid fa-file-pdf text-red-500 text-sm"></i> Course PDF Notes & Syllabus Inquiry</span>
+                    <i class="fa-solid fa-chevron-right text-gray-400 group-hover:translate-x-1 transition-transform"></i>
+                </button>
+
+                <div class="pt-2 border-t border-gray-200 space-y-2">
+                    <a href="https://wa.me/917270927003?text=Hello%20APNA%20SUHIL%20Team,%20I%20need%20assistance%20regarding%20courses." target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl text-xs flex items-center justify-center gap-2 shadow transition">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Direct WhatsApp Chat (+91 7270927003)
+                    </a>
+                    <a href="tel:+917270927003" class="w-full bg-brand-navy hover:bg-brand-dark text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 shadow transition">
+                        <i class="fa-solid fa-phone text-xs"></i> Direct Call Support
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <button onclick="toggleHelpDeskModal()" class="bg-emerald-500 hover:bg-emerald-600 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-3xl transition-transform transform hover:scale-110 active:scale-95 animate-bounce-subtle border-2 border-white relative group">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 border-2 border-white rounded-full flex items-center justify-center text-[9px] font-black">1</span>
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-white pt-14 pb-8 border-t border-gray-800 no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
+                <div>
+                    <h3 class="text-xl font-extrabold text-white mb-2 font-heading tracking-wider">APNA SUHIL</h3>
+                    <p class="text-xs text-brand-blue font-bold tracking-widest uppercase mb-3">@apnasuhil</p>
+                    <p class="text-xs text-gray-400 leading-relaxed mb-5">
+                        Providing quality, free computer education to every student. Learn DCA, PGDCA, Tally, Excel, Typing, and more with verifiable certifications.
+                    </p>
+
+                    <div class="flex flex-wrap gap-2.5">
+                        <a href="https://youtube.com/@apnasuhil" target="_blank" class="social-btn youtube" title="YouTube">
+                            <i class="fa-brands fa-youtube"></i>
+                            <span class="tooltip">@apnasuhil</span>
+                        </a>
+                        <a href="https://instagram.com/apnasuhil" target="_blank" class="social-btn instagram" title="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                            <span class="tooltip">@apnasuhil</span>
+                        </a>
+                        <a href="https://t.me/apnasuhil" target="_blank" class="social-btn telegram" title="Telegram">
+                            <i class="fa-brands fa-telegram"></i>
+                            <span class="tooltip">@apnasuhil</span>
+                        </a>
+                        <a href="https://linkedin.com/in/apnasuhil" target="_blank" class="social-btn linkedin" title="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                            <span class="tooltip">@apnasuhil</span>
+                        </a>
+                        <a href="https://facebook.com/apnasuhil" target="_blank" class="social-btn facebook" title="Facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                            <span class="tooltip">@apnasuhil</span>
+                        </a>
+                        <a href="https://x.com/apnasuhil" target="_blank" class="social-btn x-twitter" title="Twitter / X">
+                            <i class="fa-brands fa-x-twitter"></i>
+                            <span class="tooltip">@apnasuhil</span>
+                        </a>
+                        <a href="https://github.com/apnasuhil" target="_blank" class="social-btn github" title="GitHub">
+                            <i class="fa-brands fa-github"></i>
+                            <span class="tooltip">@apnasuhil</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold text-brand-blue mb-4 uppercase tracking-wider font-heading">Quick Links</h4>
+                    <ul class="text-xs space-y-2.5 text-gray-400">
+                        <li><a href="#" onclick="showSection('home')" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#" onclick="showSection('courses')" class="hover:text-white transition-colors">All Computer Courses</a></li>
+                        <li><a href="#" onclick="showSection('dashboard')" class="hover:text-white transition-colors">Student Dashboard</a></li>
+                        <li><a href="#" onclick="showSection('pdf-notes')" class="hover:text-white transition-colors">Class PDF Notes</a></li>
+                        <li><a href="#" onclick="showSection('live-classes')" class="hover:text-white transition-colors">Live Youtube Classes</a></li>
+                        <li><a href="#" onclick="showSection('certificate')" class="hover:text-white transition-colors">Verify Certificate</a></li>
+                        <li><a href="#" onclick="showSection('support')" class="hover:text-white transition-colors">WhatsApp Support</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold text-brand-blue mb-4 uppercase tracking-wider font-heading">Top Computer Courses</h4>
+                    <ul class="text-xs space-y-2.5 text-gray-400">
+                        <li>Advance Excel & Data Analytics</li>
+                        <li>Tally ERP 9 & Tally Prime GST</li>
+                        <li>PGDCA & DCA Full Course</li>
+                        <li>CPCT & Hindi Typing</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold text-brand-blue mb-4 uppercase tracking-wider font-heading">Contact Support</h4>
+                    <ul class="text-xs space-y-2.5 text-gray-400">
+                        <li><i class="fa-solid fa-envelope mr-2 text-brand-blue"></i> support@apnasuhil.com</li>
+                        <li><i class="fa-solid fa-phone mr-2 text-brand-blue"></i> +91 7270927003</li>
+                        <li><i class="fa-brands fa-whatsapp mr-2 text-emerald-400"></i> WhatsApp Q&A Support</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800/80 pt-8 text-center text-xs text-gray-500 font-medium flex flex-col sm:flex-row items-center justify-between gap-4">
+                <span>© 2026 APNA SUHIL. All Rights Reserved. Designed for Smooth Mobile, Tablet & PC Experience.</span>
+                <span class="text-gray-400 font-bold">Official Handle: <a href="https://instagram.com/apnasuhil" target="_blank" class="text-brand-blue hover:underline">@apnasuhil</a></span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        const coursesData = [
+            { id: 'dca', title: 'DCA (Diploma in Computer Applications)', category: 'Diploma', duration: '6 Months', lessons: 12, icon: 'fa-laptop-code', badge: 'Popular', oldPrice: '₹10,999' },
+            { id: 'pgdca', title: 'PGDCA (Post Graduate Diploma)', category: 'Post Grad', duration: '1 Year', lessons: 24, icon: 'fa-graduation-cap', badge: 'Advanced', oldPrice: '₹14,999' },
+            { id: 'excel', title: 'Advance Excel & Data Analytics', category: 'Office Tools', duration: '2 Months', lessons: 15, icon: 'fa-file-excel', badge: 'High Demand', oldPrice: '₹6,999' },
+            { id: 'tally-prime', title: 'Tally Prime & GST Accounting', category: 'Accounting', duration: '3 Months', lessons: 18, icon: 'fa-calculator', badge: 'Job Ready', oldPrice: '₹8,999' },
+            { id: 'tally-erp', title: 'Tally ERP 9 Complete Course', category: 'Accounting', duration: '2 Months', lessons: 14, icon: 'fa-book', badge: 'Free', oldPrice: '₹7,999' },
+            { id: 'ccc', title: 'CCC (Course on Computer Concepts)', category: 'Certificate', duration: '1 Month', lessons: 10, icon: 'fa-desktop', badge: 'Govt Exam', oldPrice: '₹4,999' },
+            { id: 'cpct', title: 'CPCT Exam Preparation', category: 'Exam Prep', duration: '2 Months', lessons: 16, icon: 'fa-keyboard', badge: 'Special', oldPrice: '₹5,999' },
+            { id: 'typing', title: 'Hindi & English Typing Mastery', category: 'Skill', duration: '1 Month', lessons: 8, icon: 'fa-font', badge: 'Practice', oldPrice: '₹2,999' },
+            { id: 'cfa', title: 'CFA (Financial Accounting)', category: 'Finance', duration: '3 Months', lessons: 15, icon: 'fa-chart-line', badge: 'New', oldPrice: '₹9,999' },
+        ];
+
+        const initialCourseLessons = {
+            'dca': [
+                { id: 1, title: 'Chapter 1: Introduction to Computer Hardware & CPU', embedId: 'dQw4w9WgXcQ' },
+                { id: 2, title: 'Chapter 2: Operating System (Windows 11 Setup)', embedId: 'L_LUpnjgPso' },
+                { id: 3, title: 'Chapter 3: MS Word Complete Document Design', embedId: '3GZ_eC_G4tY' },
+                { id: 4, title: 'Chapter 4: MS PowerPoint Presentation Tricks', embedId: '8pTEmbeENF4' }
+            ],
+            'excel': [
+                { id: 1, title: 'Chapter 1: Excel Basic Interface & Formulas', embedId: 'rwbho0CgEAE' },
+                { id: 2, title: 'Chapter 2: VLOOKUP, XLOOKUP & INDEX MATCH', embedId: '0zG121aKstA' },
+                { id: 3, title: 'Chapter 3: Interactive Dashboards & Pivot Tables', embedId: 'm13o5XSoA4U' }
+            ]
+        };
+
+        function getLessonsStore() {
+            const stored = localStorage.getItem('as_course_lessons');
+            if (stored) {
+                return JSON.parse(stored);
+            } else {
+                localStorage.setItem('as_course_lessons', JSON.stringify(initialCourseLessons));
+                return initialCourseLessons;
+            }
+        }
+
+        function addLecture(courseId) {
+            const title = prompt("Naye Lecture ka naam (Title) likhein:");
+            const videoId = prompt("YouTube Video ID (jaise dQw4w9WgXcQ) dalen:");
+            if (title && videoId) {
+                let store = getLessonsStore();
+                if (!store[courseId]) store[courseId] = [];
+                store[courseId].push({ id: Date.now(), title: title.trim(), embedId: videoId.trim() });
+                localStorage.setItem('as_course_lessons', JSON.stringify(store));
+                alert("✅ Lecture safaltapurvak add ho gaya hai!");
+                refreshCoursePlayer(courseId);
+            }
+        }
+
+        function deleteLecture(courseId, lessonId) {
+            if (confirm("⚠️ Kya aap sach me is lecture ko delete karna chahte hain?")) {
+                let store = getLessonsStore();
+                if (store[courseId]) {
+                    store[courseId] = store[courseId].filter(l => l.id !== lessonId);
+                    localStorage.setItem('as_course_lessons', JSON.stringify(store));
+                    alert("🗑️ Lecture delete kar diya gaya hai!");
+                    refreshCoursePlayer(courseId);
+                }
+            }
+        }
+
+        function refreshCoursePlayer(courseId) {
+            const courseObj = coursesData.find(c => c.id === courseId);
+            const courseTitle = courseObj ? courseObj.title : "Course Lectures";
+            openCourse(courseId, courseTitle);
+        }
+
+        // GO LIVE MODAL CONTROLS
+        function openGoLiveModal() {
+            document.getElementById('goLiveModal').classList.remove('hidden');
+        }
+
+        function closeGoLiveModal() {
+            document.getElementById('goLiveModal').classList.add('hidden');
+        }
+
+        function togglePlatformInput() {
+            const platform = document.getElementById('livePlatform').value;
+            const label = document.getElementById('liveUrlLabel');
+            const input = document.getElementById('liveUrlInput');
+            const help = document.getElementById('liveUrlHelp');
+
+            if (platform === 'zoom') {
+                label.innerText = "Zoom Meeting Join URL *";
+                input.placeholder = "https://zoom.us/j/your-meeting-id";
+                help.innerText = "Zoom meeting ka link yahan paste karein jisse students click karke join kar sakein.";
+            } else if (platform === 'meet') {
+                label.innerText = "Google Meet Video Call Link *";
+                input.placeholder = "https://meet.google.com/abc-defg-hij";
+                help.innerText = "Google meet ka link yahan paste karein.";
+            } else {
+                label.innerText = "YouTube Video ID or Embed URL *";
+                input.placeholder = "e.g. dQw4w9WgXcQ";
+                help.innerText = "YouTube video ID ya stream link yahan dalein.";
+            }
+        }
+
+        function setupLiveBroadcast(e) {
+            e.preventDefault();
+            const platform = document.getElementById('livePlatform').value;
+            const title = document.getElementById('liveTitleInput').value.trim();
+            const urlVal = document.getElementById('liveUrlInput').value.trim();
+
+            document.getElementById('activeLiveTitle').innerText = title;
+            const iframe = document.getElementById('liveClassIframe');
+
+            if (platform === 'zoom' || platform === 'meet') {
+                // If Zoom or Google Meet is chosen, prompt or provide redirection card inside player
+                iframe.src = "";
+                iframe.parentElement.innerHTML = `
+                    <div class="w-full h-full flex flex-col items-center justify-center bg-brand-navy text-white p-6 text-center">
+                        <div class="w-16 h-16 bg-emerald-500 rounded-full flex items-center justify-center text-3xl mb-3 shadow-lg animate-bounce">
+                            <i class="fa-solid fa-video"></i>
+                        </div>
+                        <h4 class="text-xl font-bold font-heading mb-1">${platform === 'zoom' ? 'Zoom Meeting' : 'Google Meet'} Active</h4>
+                        <p class="text-xs text-gray-300 max-w-sm mb-5">Live video session start ho chuka hai. Niche diye button par click karke join karein.</p>
+                        <a href="${urlVal}" target="_blank" class="bg-gradient-to-r from-emerald-500 to-teal-500 hover:scale-105 text-white font-extrabold text-xs px-8 py-3.5 rounded-xl shadow-xl transition flex items-center gap-2">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Join Live Video Call Now
+                        </a>
+                    </div>
+                `;
+            } else {
+                // YouTube Embed
+                let embedId = urlVal;
+                if (urlVal.includes('youtu')) {
+                    const match = urlVal.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
+                    if (match) embedId = match[1];
+                }
+                iframe.src = `https://www.youtube.com/embed/${embedId}?autoplay=1`;
+            }
+
+            alert("🚀 Live Broadcast successfully setup ho gaya hai!");
+            closeGoLiveModal();
+        }
+
+        const quizQuestionsStore = [
+            { q: "Computer ka brain kisse kaha jata hai?", options: ["RAM", "CPU", "Hard Disk", "Monitor"], ans: 1 },
+            { q: "MS Excel me Formula start karne ke liye kis sign ka use hota hai?", options: ["+", "@", "=", "#"], ans: 2 },
+            { q: "Ctrl + C shortcut key kis kaam ke liye hoti hai?", options: ["Paste", "Cut", "Copy", "Undo"], ans: 2 },
+            { q: "RAM kis type ki memory hai?", options: ["Volatile / Temporary", "Non-Volatile", "Permanent", "Secondary"], ans: 0 },
+            { q: "WWW ka full form kya hota hai?", options: ["World Wide Web", "World Whole Web", "Web World Wide", "Web Wide World"], ans: 0 },
+            { q: "Tally Prime me Invoice Create karne ki shortcut key kya hai?", options: ["F8", "F9", "F5", "F4"], ans: 0 },
+            { q: "Windows 11 ek kya hai?", options: ["Application Software", "Operating System", "Hardware", "Browser"], ans: 1 },
+            { q: "1 Gigabyte (GB) me kitne Megabytes (MB) hote hain?", options: ["512 MB", "1000 MB", "1024 MB", "2048 MB"], ans: 2 },
+            { q: "URL ka full form kya hai?", options: ["Uniform Resource Locator", "Universal Resource Link", "Uniform Real Link", "Universal Real Locator"], ans: 0 },
+            { q: "CCC me Passing percentage kitna chahiye hota hai?", options: ["33%", "50%", "60%", "75%"], ans: 1 }
+        ];
+
+        let activeCourseExamId = 'dca';
+        let currentActiveLessonId = 1;
+
+        function renderStudentDashboard() {
+            const students = getEnrolledStudents();
+            const dashCourseList = document.getElementById('dashCourseList');
+            dashCourseList.innerHTML = '';
+
+            if (students.length === 0) {
+                document.getElementById('dashStudentName').innerText = "Guest Student";
+                document.getElementById('dashStudentReg').innerText = "No Enrolled Courses Found";
+                document.getElementById('dashEnrolledCount').innerText = "0";
+                document.getElementById('dashLecturesCount').innerText = "0";
+                document.getElementById('dashCertCount').innerText = "0";
+
+                dashCourseList.innerHTML = `
+                    <div class="bg-white p-8 rounded-2xl text-center border border-gray-200">
+                        <p class="font-bold text-gray-600">Aapne abhi tak kisi course me Admission nahi liya hai.</p>
+                        <button onclick="showSection('enrollment')" class="mt-4 bg-brand-blue text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow">Take Admission Now</button>
+                    </div>
+                `;
+                return;
+            }
+
+            const student = students[students.length - 1];
+            document.getElementById('dashStudentName').innerText = student.name;
+            document.getElementById('dashStudentReg').innerText = `Registration ID: AS/2026/${student.regId} | Mobile: ${student.mobile}`;
+            document.getElementById('dashEnrolledCount').innerText = students.length;
+
+            let totalLectures = 0;
+            let certCount = 0;
+
+            students.forEach(s => {
+                const completedLessons = s.completedLessons || [1];
+                totalLectures += completedLessons.length;
+                if (s.examPassed) certCount++;
+
+                const totalCourseLessons = (initialCourseLessons['dca'] || []).length || 4;
+                const progressPercent = Math.min(100, Math.round((completedLessons.length / totalCourseLessons) * 100));
+
+                dashCourseList.innerHTML += `
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                        <div class="flex-1">
+                            <h4 class="font-bold text-gray-900 text-base font-heading">${s.course}</h4>
+                            <p class="text-xs text-gray-500 mt-1">Status: ${progressPercent === 100 ? '<span class="text-emerald-600 font-bold">Completed (100%)</span>' : '<span class="text-amber-600 font-bold">In Progress</span>'}</p>
+                            
+                            <div class="w-full bg-gray-100 rounded-full h-3 mt-3 overflow-hidden">
+                                <div class="bg-gradient-to-r from-brand-blue to-teal-400 h-full rounded-full transition-all duration-500" style="width: ${progressPercent}%"></div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <button onclick="openCourse('dca', '${s.course}')" class="bg-brand-navy text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow hover:bg-brand-dark transition">
+                                Resume Study
+                            </button>
+                            ${s.examPassed ? 
+                                `<button onclick="showSection('certificate'); document.getElementById('certSearchKey').value='${s.mobile}'; verifyAndGenerateCertificate();" class="bg-emerald-600 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow">View Certificate</button>` : 
+                                `<button onclick="startCourseExam('${s.course}')" class="bg-amber-500 text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow">Take Final Exam</button>`
+                            }
+                        </div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('dashLecturesCount').innerText = totalLectures;
+            document.getElementById('dashCertCount').innerText = certCount;
+        }
+
+        function startCourseExam(courseName = "DCA") {
+            const students = getEnrolledStudents();
+            if (students.length === 0) {
+                alert("⚠️ Pehle Admission Form bharein fir hi aap Exam de sakte hain.");
+                showSection('enrollment');
+                return;
+            }
+
+            showSection('quiz');
+            document.getElementById('quizCourseTitle').innerText = `${courseName} Final Evaluation Exam`;
+
+            const container = document.getElementById('quizQuestionsContainer');
+            container.innerHTML = '';
+
+            quizQuestionsStore.forEach((item, index) => {
+                let optionsHTML = '';
+                item.options.forEach((opt, optIdx) => {
+                    optionsHTML += `
+                        <label class="flex items-center gap-3 p-3 bg-gray-50 border border-gray-200 rounded-xl cursor-pointer hover:bg-brand-lightBlue/50 transition text-xs font-semibold">
+                            <input type="radio" name="q_${index}" value="${optIdx}" class="text-brand-blue focus:ring-brand-blue">
+                            <span>${opt}</span>
+                        </label>
+                    `;
+                });
+
+                container.innerHTML += `
+                    <div class="space-y-2 border-b border-gray-100 pb-4">
+                        <p class="font-bold text-sm text-gray-900">${index + 1}. ${item.q}</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
+                            ${optionsHTML}
+                        </div>
+                    </div>
+                `;
+            });
+
+            startQuizTimer();
+        }
+
+        let quizTimerInterval = null;
+        function startQuizTimer() {
+            let seconds = 300;
+            const timerEl = document.getElementById('quizTimer');
+            clearInterval(quizTimerInterval);
+
+            quizTimerInterval = setInterval(() => {
+                seconds--;
+                let m = Math.floor(seconds / 60);
+                let s = seconds % 60;
+                timerEl.innerText = `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+
+                if (seconds <= 0) {
+                    clearInterval(quizTimerInterval);
+                    alert("⏰ Time Over! Exam submitted automatically.");
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        function submitQuiz() {
+            clearInterval(quizTimerInterval);
+            let score = 0;
+
+            quizQuestionsStore.forEach((item, index) => {
+                const selected = document.querySelector(`input[name="q_${index}"]:checked`);
+                if (selected && parseInt(selected.value) === item.ans) {
+                    score++;
+                }
+            });
+
+            const passPercent = (score / quizQuestionsStore.length) * 100;
+
+            if (score >= 6) {
+                alert(`🎉 Congratulations! Aapne Exam clear kar liya hai.\n\nYour Score: ${score}/10 (${passPercent}%)\n\nAapka Verified Certificate unlock ho gaya hai!`);
+                
+                const students = getEnrolledStudents();
+                if (students.length > 0) {
+                    students[students.length - 1].examPassed = true;
+                    localStorage.setItem('as_enrolled_students', JSON.stringify(students));
+                }
+
+                showSection('certificate');
+                const lastStudent = students[students.length - 1];
+                if (lastStudent) {
+                    document.getElementById('certSearchKey').value = lastStudent.mobile || lastStudent.email;
+                    verifyAndGenerateCertificate();
+                }
+            } else {
+                alert(`❌ Exam Not Passed!\n\nYour Score: ${score}/10 (${passPercent}%)\nPassing Marks: 6/10 (60%). Kripya lectures dhyan se padhein aur dobara try karein.`);
+            }
+        }
+
+        function markCurrentLessonComplete() {
+            const students = getEnrolledStudents();
+            if (students.length === 0) return;
+
+            const student = students[students.length - 1];
+            if (!student.completedLessons) student.completedLessons = [];
+
+            if (!student.completedLessons.includes(currentActiveLessonId)) {
+                student.completedLessons.push(currentActiveLessonId);
+                localStorage.setItem('as_enrolled_students', JSON.stringify(students));
+                alert("✅ Lesson Completed! Progress dashboard me update ho gayi hai.");
+            } else {
+                alert("👍 Ye lesson pehle se completed hai.");
+            }
+        }
+
+        function openPdfCreatorModal() {
+            document.getElementById('pdfCreatorModal').classList.remove('hidden');
+        }
+
+        function closePdfCreatorModal() {
+            document.getElementById('pdfCreatorModal').classList.add('hidden');
+        }
+
+        function submitCustomPdfNote(e) {
+            e.preventDefault();
+            const folder = document.getElementById('newPdfFolder').value;
+            const title = document.getElementById('newPdfTitle').value.trim();
+            const url = document.getElementById('newPdfUrl').value.trim();
+
+            const store = getPdfNotesStore();
+            if (!store[folder]) store[folder] = [];
+
+            const today = new Date().toISOString().split('T')[0];
+            store[folder].unshift({ id: Date.now(), title, size: '2.5 MB', date: today, url });
+
+            localStorage.setItem('as_pdf_notes_store', JSON.stringify(store));
+            alert("✅ Naya PDF Note Detail safaltapurvak folder me add ho gaya hai!");
+            closePdfCreatorModal();
+            renderPdfFolders();
+        }
+
+        function toggleHelpDeskModal() {
+            const modal = document.getElementById('aiHelpDeskModal');
+            modal.classList.toggle('hidden');
+        }
+
+        function triggerAiOption(optionName) {
+            const whatsappMsg = `Hello APNA SUHIL AI Help Desk,%0A%0AI need support regarding: *${optionName}*.%0APlease assist me.`;
+            window.open(`https://wa.me/917270927003?text=${whatsappMsg}`, '_blank');
+        }
+
+        const initialPdfNotesData = {
+            'dca': [
+                { id: 101, title: 'DCA Chapter 1 - Computer Basics Notes.pdf', size: '2.4 MB', date: '2026-08-01', url: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' },
+                { id: 102, title: 'DCA Chapter 2 - MS Office Full Practical Guide.pdf', size: '4.1 MB', date: '2026-08-03', url: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' }
+            ],
+            'excel': [
+                { id: 201, title: 'Advance Excel Formulas Cheat Sheet.pdf', size: '3.2 MB', date: '2026-08-02', url: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' },
+                { id: 202, title: 'VLOOKUP & Pivot Tables Practical Notes.pdf', size: '1.8 MB', date: '2026-08-05', url: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' }
+            ],
+            'tally-prime': [
+                { id: 301, title: 'Tally Prime GST Accounting Complete Manual.pdf', size: '5.6 MB', date: '2026-08-04', url: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' }
+            ]
+        };
+
+        let activeFolderId = null;
+
+        function getPdfNotesStore() {
+            const stored = localStorage.getItem('as_pdf_notes_store');
+            if (stored) {
+                return JSON.parse(stored);
+            } else {
+                localStorage.setItem('as_pdf_notes_store', JSON.stringify(initialPdfNotesData));
+                return initialPdfNotesData;
+            }
+        }
+
+        function renderPdfFolders() {
+            const grid = document.getElementById('pdfFoldersGrid');
+            const store = getPdfNotesStore();
+            grid.innerHTML = '';
+
+            coursesData.forEach(course => {
+                const files = store[course.id] || [];
+                grid.innerHTML += `
+                    <div onclick="openFolderView('${course.id}', '${course.title}')" class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 hover:shadow-xl hover:border-amber-400 transition duration-300 cursor-pointer group flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                                    <i class="fa-solid fa-folder-closed"></i>
+                                </div>
+                                <span class="text-xs font-extrabold bg-amber-50 text-amber-700 px-3 py-1 rounded-full border border-amber-200">${files.length} Notes</span>
+                            </div>
+                            <h3 class="font-bold text-gray-900 text-base mb-1 font-heading group-hover:text-brand-blue transition-colors">${course.title}</h3>
+                            <p class="text-xs text-gray-500 font-medium">Chapter-wise PDF Notes & Guides</p>
+                        </div>
+                        <div class="mt-5 pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-brand-blue">
+                            <span>Open Folder</span>
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function openFolderView(courseId, courseTitle) {
+            activeFolderId = courseId;
+            document.getElementById('pdfFoldersGrid').classList.add('hidden');
+            document.getElementById('pdfNotesListContainer').classList.remove('hidden');
+
+            document.getElementById('currentFolderName').innerText = courseTitle;
+
+            renderPdfFilesList();
+        }
+
+        function closeFolderView() {
+            activeFolderId = null;
+            document.getElementById('pdfFoldersGrid').classList.remove('hidden');
+            document.getElementById('pdfNotesListContainer').classList.add('hidden');
+        }
+
+        function renderPdfFilesList() {
+            if (!activeFolderId) return;
+
+            const grid = document.getElementById('pdfFilesGrid');
+            const store = getPdfNotesStore();
+            const files = store[activeFolderId] || [];
+
+            document.getElementById('currentFolderCount').innerText = `${files.length} PDF Files`;
+            grid.innerHTML = '';
+
+            if (files.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-12 bg-white rounded-2xl border border-gray-200">
+                        <i class="fa-solid fa-folder-open text-gray-300 text-5xl mb-3"></i>
+                        <p class="font-bold text-gray-600 text-base">Is Folder me abhi koi PDF Notes nahi hain.</p>
+                        <p class="text-xs text-gray-400 mt-1">Upar "Upload PDF" button se apne device se PDF file add karein.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            files.forEach(file => {
+                grid.innerHTML += `
+                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 hover:border-brand-blue transition duration-300 flex flex-col justify-between">
+                        <div class="flex items-start justify-between gap-3 mb-4">
+                            <div class="flex items-start gap-3 overflow-hidden">
+                                <div class="w-10 h-10 bg-red-100 text-red-500 rounded-lg flex items-center justify-center text-xl flex-shrink-0">
+                                    <i class="fa-solid fa-file-pdf"></i>
+                                </div>
+                                <div class="overflow-hidden">
+                                    <h4 class="font-bold text-sm text-gray-800 truncate" title="${file.title}">${file.title}</h4>
+                                    <p class="text-[11px] text-gray-400 mt-0.5">Size: ${file.size} • Added: ${file.date}</p>
+                                </div>
+                            </div>
+                            <!-- DELETE PDF BUTTON -->
+                            <button onclick="deletePdfNote(${file.id})" class="text-red-500 hover:text-red-700 bg-red-50 hover:bg-red-100 p-2 rounded-lg transition" title="Delete PDF Note">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                        <div class="flex items-center gap-2 pt-3 border-t border-gray-100">
+                            <button onclick="openPdfModal('${file.title}', '${file.url}')" class="flex-1 bg-brand-lightBlue hover:bg-brand-blue hover:text-white text-brand-blue font-bold text-xs py-2.5 rounded-lg transition text-center flex items-center justify-center gap-1.5">
+                                <i class="fa-solid fa-eye"></i> Read Online
+                            </button>
+                            <a href="${file.url}" download="${file.title}" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs py-2.5 rounded-lg transition text-center flex items-center justify-center gap-1.5 shadow-sm">
+                                <i class="fa-solid fa-download"></i> Download
+                            </a>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function deletePdfNote(fileId) {
+            if (!activeFolderId) return;
+
+            if (confirm("⚠️ Kya aap sach me is PDF Note ko delete karna chahte hain?")) {
+                const store = getPdfNotesStore();
+                if (store[activeFolderId]) {
+                    store[activeFolderId] = store[activeFolderId].filter(f => f.id !== fileId);
+                    localStorage.setItem('as_pdf_notes_store', JSON.stringify(store));
+                    alert("🗑️ PDF Note safaltapurvak delete kar diya gaya hai!");
+                    renderPdfFilesList();
+                    renderPdfFolders();
+                }
+            }
+        }
+
+        function handlePDFUpload(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            if (file.type !== 'application/pdf') {
+                alert("⚠️ Kripya sirf PDF file hi upload karein.");
+                return;
+            }
+
+            if (!activeFolderId) {
+                alert("⚠️ Pehle koi ek Course Folder open karein, fir PDF upload karein.");
+                return;
+            }
+
+            const fileSizeMB = (file.size / (1024 * 1024)).toFixed(1) + " MB";
+            const fileUrl = URL.createObjectURL(file);
+            const today = new Date().toISOString().split('T')[0];
+
+            const store = getPdfNotesStore();
+            if (!store[activeFolderId]) store[activeFolderId] = [];
+
+            store[activeFolderId].unshift({
+                id: Date.now(),
+                title: file.name,
+                size: fileSizeMB,
+                date: today,
+                url: fileUrl
+            });
+
+            localStorage.setItem('as_pdf_notes_store', JSON.stringify(store));
+            alert(`✅ "${file.name}" PDF Note is folder me safaltapurvak add ho gaya hai!`);
+            renderPdfFilesList();
+            renderPdfFolders();
+        }
+
+        function openPdfModal(title, url) {
+            document.getElementById('pdfModalTitle').innerText = title;
+            document.getElementById('pdfViewerIframe').src = url;
+            document.getElementById('pdfModalDownloadLink').href = url;
+            document.getElementById('pdfModalDownloadLink').download = title;
+
+            document.getElementById('pdfViewerModal').classList.remove('hidden');
+        }
+
+        function closePdfModal() {
+            document.getElementById('pdfViewerModal').classList.add('hidden');
+            document.getElementById('pdfViewerIframe').src = '';
+        }
+
+        let currentZoom = 1.0;
+        function zoomCertificate(step) {
+            currentZoom = Math.min(Math.max(0.5, currentZoom + step), 2.0);
+            applyZoom();
+        }
+
+        function resetZoom() {
+            currentZoom = 1.0;
+            applyZoom(0, 0);
+        }
+
+        function applyZoom(transX = 0, transY = 0) {
+            const certElement = document.getElementById('printableCertificate');
+            const zoomValText = document.getElementById('zoomVal');
+            if (certElement) {
+                certElement.style.transform = `scale(${currentZoom}) translate(${transX}px, ${transY}px)`;
+            }
+            if (zoomValText) {
+                zoomValText.innerText = `${Math.round(currentZoom * 100)}%`;
+            }
+        }
+
+        let isHoverPanEnabled = true;
+
+        function toggleHoverPan() {
+            isHoverPanEnabled = !isHoverPanEnabled;
+            const statusText = document.getElementById('hoverPanStatus');
+            if (isHoverPanEnabled) {
+                statusText.innerText = "ON";
+                statusText.className = "font-black text-emerald-800";
+            } else {
+                statusText.innerText = "OFF";
+                statusText.className = "font-black text-red-600";
+                resetZoom();
+            }
+        }
+
+        function initHoverPanEvents() {
+            const container = document.getElementById('certViewportContainer');
+            const cert = document.getElementById('printableCertificate');
+
+            if (!container || !cert) return;
+
+            container.addEventListener('mousemove', function(e) {
+                if (!isHoverPanEnabled) return;
+
+                const rect = container.getBoundingClientRect();
+                const x = e.clientX - rect.left; 
+                const y = e.clientY - rect.top;
+
+                const xPercent = (x / rect.width) - 0.5;
+                const yPercent = (y / rect.height) - 0.5;
+
+                const maxPan = 140; 
+                const panX = -xPercent * maxPan;
+                const panY = -yPercent * maxPan;
+
+                const hoverScale = Math.max(1.35, currentZoom);
+                cert.style.transform = `scale(${hoverScale}) translate(${panX}px, ${panY}px)`;
+            });
+
+            container.addEventListener('mouseleave', function() {
+                if (!isHoverPanEnabled) return;
+                cert.style.transform = `scale(${currentZoom}) translate(0px, 0px)`;
+            });
+        }
+
+        function renderHomeCourses() {
+            const grid = document.getElementById('popular-courses-grid');
+            grid.innerHTML = '';
+            coursesData.slice(0, 4).forEach(course => {
+                grid.innerHTML += createCourseCardHTML(course);
+            });
+        }
+
+        function renderAllCourses() {
+            const grid = document.getElementById('all-courses-grid');
+            grid.innerHTML = '';
+            coursesData.forEach(course => {
+                grid.innerHTML += createCourseCardHTML(course);
+            });
+        }
+
+        function createCourseCardHTML(course) {
+            return `
+                <div class="bg-white rounded-2xl shadow-md border border-gray-100 card-hover-effect flex flex-col justify-between overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-[11px] font-bold px-3 py-1 bg-brand-lightBlue text-brand-blue rounded-full uppercase">${course.badge}</span>
+                            <span class="text-xs font-semibold text-gray-500"><i class="fa-regular fa-clock mr-1"></i>${course.duration}</span>
+                        </div>
+                        <div class="w-14 h-14 bg-brand-navy/10 text-brand-navy rounded-xl flex items-center justify-center text-2xl mb-4">
+                            <i class="fa-solid ${course.icon}"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-900 text-lg mb-1 font-heading">${course.title}</h3>
+                        <p class="text-xs font-medium text-gray-500 mb-3">${course.lessons} Chapter Lectures • Pre-recorded</p>
+                        
+                        <!-- RATINGS AND STRIKE PRICE UI -->
+                        <div class="space-y-1.5 pt-2 border-t border-gray-100">
+                            <div class="flex items-center gap-1.5 text-amber-400 text-xs font-bold">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star-half-stroke"></i>
+                                <span class="text-gray-600 font-semibold ml-1">(4.5)</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm font-extrabold">
+                                <span class="text-gray-900">₹ 0.00</span>
+                                <span class="text-gray-400 line-through font-normal text-xs">${course.oldPrice || '₹10,999'}</span>
+                                <span class="text-gray-400 font-normal">|</span>
+                                <span class="text-red-500 text-xs font-bold">100% OFF</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 px-6 py-3.5 border-t border-gray-100 flex items-center justify-between">
+                        <span class="text-xs font-extrabold text-emerald-600 uppercase">100% Free</span>
+                        <button onclick="openCourse('${course.id}', '${course.title}')" class="text-xs bg-brand-navy hover:bg-brand-blue text-white px-4 py-2 rounded-lg font-bold transition-colors duration-200">
+                            Start Course <i class="fa-solid fa-play ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function showSection(sectionId) {
+            const sections = ['home', 'courses', 'dashboard', 'quiz', 'pdf-notes', 'course-player', 'live-classes', 'enrollment', 'certificate', 'support'];
+            sections.forEach(sec => {
+                const el = document.getElementById(`section-${sec}`);
+                if (el) el.classList.add('hidden');
+            });
+            const target = document.getElementById(`section-${sectionId}`);
+            if (target) {
+                target.classList.remove('hidden');
+                target.classList.remove('animate-fade-in-up');
+                void target.offsetWidth;
+                target.classList.add('animate-fade-in-up');
+            }
+
+            if (sectionId === 'pdf-notes') {
+                renderPdfFolders();
+            } else if (sectionId === 'dashboard') {
+                renderStudentDashboard();
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            document.getElementById('mobile-menu').classList.add('hidden');
+        }
+
+        function openCourse(courseId, courseTitle) {
+            showSection('course-player');
+            document.getElementById('currentCourseTitle').innerText = courseTitle;
+            
+            const store = getLessonsStore();
+            const lessons = store[courseId] || [];
+
+            document.getElementById('lessonCount').innerText = `${lessons.length} Lectures`;
+
+            const playlistContainer = document.getElementById('chapterList');
+            playlistContainer.innerHTML = '';
+
+            lessons.forEach((lesson) => {
+                playlistContainer.innerHTML += `
+                    <div class="p-3 border border-gray-100 rounded-xl flex items-center justify-between text-xs group hover:bg-gray-50">
+                        <div onclick="playVideo('${lesson.embedId}', '${lesson.title}', ${lesson.id})" class="cursor-pointer flex-grow flex items-center gap-3">
+                            <i class="fa-regular fa-circle-play text-brand-blue text-base"></i>
+                            <span class="font-semibold text-gray-700">${lesson.title}</span>
+                        </div>
+                        <button onclick="deleteLecture('${courseId}', ${lesson.id})" class="text-red-500 hover:text-red-700 p-2" title="Delete Lecture">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+            });
+
+            // Add Lecture Button at bottom of list
+            playlistContainer.innerHTML += `
+                <button onclick="addLecture('${courseId}')" class="w-full mt-2 py-3 border-2 border-dashed border-gray-300 text-gray-600 rounded-xl text-xs font-bold hover:border-brand-blue hover:text-brand-blue transition flex items-center justify-center gap-1.5">
+                    <i class="fa-solid fa-plus-circle text-brand-blue text-sm"></i> Add New Lecture
+                </button>
+            `;
+
+            if (lessons.length > 0) {
+                playVideo(lessons[0].embedId, lessons[0].title, lessons[0].id);
+            } else {
+                document.getElementById('videoPlayer').src = "";
+                document.getElementById('currentLessonTitle').innerText = "No Lectures Available. Please add one.";
+            }
+        }
+
+        function playVideo(embedId, title, lessonId = 1) {
+            currentActiveLessonId = lessonId;
+            document.getElementById('videoPlayer').src = `https://www.youtube.com/embed/${embedId}?autoplay=1`;
+            document.getElementById('currentLessonTitle').innerText = title;
+        }
+
+        function filterCourses() {
+            const query = document.getElementById('searchCourse').value.toLowerCase();
+            const filtered = coursesData.filter(c => c.title.toLowerCase().includes(query) || c.category.toLowerCase().includes(query));
+            const grid = document.getElementById('all-courses-grid');
+            grid.innerHTML = '';
+            filtered.forEach(course => {
+                grid.innerHTML += createCourseCardHTML(course);
+            });
+        }
+
+        function getEnrolledStudents() {
+            return JSON.parse(localStorage.getItem('as_enrolled_students') || '[]');
+        }
+
+        function handleAdmission(e) {
+            e.preventDefault();
+            const name = document.getElementById('stdName').value.trim();
+            const mobile = document.getElementById('stdMobile').value.trim();
+            const email = document.getElementById('stdEmail').value.trim();
+            const course = document.getElementById('stdCourse').value;
+            const regId = Math.floor(1000 + Math.random() * 9000);
+
+            const students = getEnrolledStudents();
+            const existing = students.find(s => (s.mobile === mobile || (email && s.email === email)) && s.course === course);
+
+            if (!existing) {
+                students.push({ name, mobile, email, course, regId, completed: true, completedLessons: [1], examPassed: false });
+                localStorage.setItem('as_enrolled_students', JSON.stringify(students));
+            }
+
+            alert(`Congratulations ${name}! Your Admission for ${course} has been approved successfully.\n\nYour Registration ID is: AS/2026/${regId}\n\nNow you can complete lectures & claim your certificate.`);
+            showSection('dashboard');
+        }
+
+        function verifyAndGenerateCertificate() {
+            const searchKey = document.getElementById('certSearchKey').value.trim().toLowerCase();
+            if (!searchKey) {
+                alert("Please enter your registered Email Address or Mobile Number.");
+                return;
+            }
+
+            const students = getEnrolledStudents();
+            const student = students.find(s => 
+                (s.mobile && s.mobile.toLowerCase() === searchKey) || 
+                (s.email && s.email.toLowerCase() === searchKey) || 
+                `as/2026/${s.regId}` === searchKey || 
+                s.regId.toString() === searchKey
+            );
+
+            if (!student) {
+                alert("❌ Record Not Found!\n\nCertificate issue nahi ho sakta kyunki aapne abhi tak Admission Form nahi bhara hai. Pehle 'Admission' form bharein aur course complete karein.");
+                showSection('enrollment');
+                return;
+            }
+
+            document.getElementById('verifyName').innerText = student.name;
+            document.getElementById('verifyCourse').innerText = student.course;
+            document.getElementById('verifyReg').innerText = `Registration ID: AS/2026/${student.regId} | Status: Official Verified`;
+            document.getElementById('publicVerificationBadge').classList.remove('hidden');
+
+            document.getElementById('outCertName').innerText = student.name;
+            document.getElementById('outCertCourse').innerText = student.course;
+            document.getElementById('certRegId').innerText = student.regId;
+            
+            const qrContainer = document.getElementById('qrcode');
+            qrContainer.innerHTML = '';
+            
+            const verifyUrl = `${window.location.origin}${window.location.pathname}?verify=AS/2026/${student.regId}&key=${encodeURIComponent(student.mobile || student.email)}`;
+            
+            new QRCode(qrContainer, {
+                text: verifyUrl,
+                width: 76,
+                height: 76,
+                colorDark : "#0B1E3D",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+            
+            resetZoom();
+            document.getElementById('certificateWrapper').classList.remove('hidden');
+            
+            setTimeout(() => {
+                initHoverPanEvents();
+            }, 300);
+        }
+
+        function triggerDirectPrint() {
+            resetZoom();
+            window.print();
+        }
+
+        function handleSavePDF() {
+            resetZoom();
+
+            const btn = document.getElementById('certSavePdfBtn');
+            const originalContent = btn.innerHTML;
+            
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin text-lg"></i> <span>Saving PDF...</span>';
+            btn.disabled = true;
+
+            const element = document.getElementById('printableCertificate');
+            const studentName = document.getElementById('outCertName').innerText || 'Student';
+
+            const opt = {
+                margin:       0,
+                filename:     `APNA_SUHIL_Certificate_${studentName.replace(/\s+/g, '_')}.pdf`,
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { 
+                    scale: 2, 
+                    useCORS: true, 
+                    logging: false,
+                    scrollX: 0,
+                    scrollY: 0
+                },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'landscape', compress: true },
+                pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] }
+            };
+
+            if (typeof html2pdf !== 'undefined') {
+                html2pdf().set(opt).from(element).save().then(() => {
+                    btn.innerHTML = originalContent;
+                    btn.disabled = false;
+                }).catch(err => {
+                    console.warn("PDF generation issue, triggering Print Preview dialog fallback:", err);
+                    btn.innerHTML = originalContent;
+                    btn.disabled = false;
+                    window.print();
+                });
+            } else {
+                btn.innerHTML = originalContent;
+                btn.disabled = false;
+                window.print();
+            }
+        }
+
+        function toggleOtherCourseInput() {
+            const selectVal = document.getElementById('suppCourse').value;
+            const otherDiv = document.getElementById('otherCourseDiv');
+            if (selectVal === 'Other') {
+                otherDiv.classList.remove('hidden');
+            } else {
+                otherDiv.classList.add('hidden');
+            }
+        }
+
+        function handleSupportSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('suppName').value;
+            const city = document.getElementById('suppCity').value;
+            let course = document.getElementById('suppCourse').value;
+            if (course === 'Other') {
+                course = document.getElementById('suppOtherCourse').value || 'Other Course';
+            }
+            const query = document.getElementById('suppQuery').value;
+
+            const whatsappMsg = `Hello APNA SUHIL Support Team,%0A%0A*Name:* ${name}%0A*City:* ${city}%0A*Course:* ${course}%0A*Query/Doubt:* ${query}%0A%0APlease assist me regarding this.`;
+            
+            window.open(`https://wa.me/917270927003?text=${whatsappMsg}`, '_blank');
+        }
+
+        function checkURLVerification() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('verify')) {
+                showSection('certificate');
+                const key = urlParams.get('key') || urlParams.get('mobile');
+                if (key) {
+                    document.getElementById('certSearchKey').value = key;
+                    verifyAndGenerateCertificate();
+                }
+            }
+        }
+
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        window.onload = function() {
+            renderHomeCourses();
+            renderAllCourses();
+            checkURLVerification();
+        }
+    </script>
+</body>
+</html>
